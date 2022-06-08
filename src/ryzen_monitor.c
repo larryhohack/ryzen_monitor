@@ -169,14 +169,14 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     fprintf(stdout, "╭── Core Statistics (Calculated) ───────────────┬────────────────────────────────────────────────╮\n");
     print_line("Highest Effective Core Frequency", "%8.0f MHz", peak_core_frequency);
     print_line("Highest Core Temperature", "%8.2f C", peak_core_temp);
-    print_line("Highest Core Voltage", "%8.3f V", peak_core_voltage);
-    print_line("Average Core Voltage", "%5.3f V", total_core_voltage/sysinfo->enabled_cores_count);
+    //print_line("Highest Core Voltage", "%8.3f V", peak_core_voltage);
+    //print_line("Average Core Voltage", "%5.3f V", total_core_voltage/sysinfo->enabled_cores_count);
     //print_line("Average Core CC6", "%6.2f %%", total_core_CC6/sysinfo->enabled_cores_count);
     print_line("Total Core Power Sum", "%7.3f W", total_core_power);
 
-    fprintf(stdout, "├── Reported by SMU ────────────────────────────┼────────────────────────────────────────────────┤\n");
+    //fprintf(stdout, "├── Reported by SMU ────────────────────────────┼────────────────────────────────────────────────┤\n");
     //print_line("Package Power", "%8.3f W", pmta(SOCKET_POWER)); //Is listed below in power section
-    print_line("Peak Core Voltage", "%5.3f V", pmta(CPU_TELEMETRY_VOLTAGE));
+    //print_line("Peak Core Voltage", "%5.3f V", pmta(CPU_TELEMETRY_VOLTAGE));
     // if(pmt->PC6) print_line("Package CC6", "%6.2f %%", pmta(PC6));
     fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
 
@@ -197,7 +197,7 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     if(pmt->TDC_ACTUAL) print_line("TDC Actual", "%7.3f A | %7.f A | %8.2f %%", pmta(TDC_ACTUAL), pmta(TDC_LIMIT), (pmta(TDC_ACTUAL) / pmta(TDC_LIMIT) * 100));
     if(pmt->TDC_VALUE_SOC) print_line("TDC Value, SoC only", "%7.3f A | %7.f A | %8.2f %%", pmta(TDC_VALUE_SOC), pmta(TDC_LIMIT_SOC), (pmta(TDC_VALUE_SOC) / pmta(TDC_LIMIT_SOC) * 100));
     print_line("EDC", "%7.3f A | %7.f A | %8.2f %%", edc_value, pmta(EDC_LIMIT), (edc_value / pmta(EDC_LIMIT) * 100));
-    if(pmt->EDC_VALUE_SOC) print_line("EDC, SoC only", "%7.3f A | %7.f A | %8.2f %%", pmta(EDC_VALUE_SOC), pmta(EDC_LIMIT_SOC), (pmta(EDC_VALUE_SOC) / pmta(EDC_LIMIT_SOC) * 100));
+    //if(pmt->EDC_VALUE_SOC) print_line("EDC, SoC only", "%7.3f A | %7.f A | %8.2f %%", pmta(EDC_VALUE_SOC), pmta(EDC_LIMIT_SOC), (pmta(EDC_VALUE_SOC) / pmta(EDC_LIMIT_SOC) * 100));
     print_line("THM", "%7.2f C | %7.f C | %8.2f %%", pmta(THM_VALUE), pmta(THM_LIMIT), (pmta(THM_VALUE) / pmta(THM_LIMIT) * 100));
     if(pmt->THM_VALUE_SOC) print_line("THM SoC", "%7.2f C | %7.f C | %8.2f %%", pmta(THM_VALUE_SOC), pmta(THM_LIMIT_SOC), (pmta(THM_VALUE_SOC) / pmta(THM_LIMIT_SOC) * 100));
     if(pmt->THM_VALUE_GFX) print_line("THM GFX", "%7.2f C | %7.f C | %8.2f %%", pmta(THM_VALUE_GFX), pmta(THM_LIMIT_GFX), (pmta(THM_VALUE_GFX) / pmta(THM_LIMIT_GFX) * 100));
