@@ -281,25 +281,25 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     }
 
     //These powers are supplied by other power lines to the CPU and are drawn from the 24 pin ATX connector on most boards
-    print_line("","");
+    // print_line("","");
     print_line("VDDIO_MEM Power", "%7.3f W", pmta(VDDIO_MEM_POWER));
     print_line("IOD_VDDIO_MEM Power", "%7.3f W", pmta(IOD_VDDIO_MEM_POWER));
     if(pmt->DDR_VDDP_POWER) print_line("DDR_VDDP Power", "%7.3f W", pmta(DDR_VDDP_POWER));
     if(pmt->DDR_PHY_POWER) print_line("DDR Phy Power", "%7.3f W", pmta(DDR_PHY_POWER));
-    print_line("VDD18 Power", "%7.3f W", pmta(VDD18_POWER)); //Same as pmta(IO_VDD18_POWER)
+    //print_line("VDD18 Power", "%7.3f W", pmta(VDD18_POWER)); //Same as pmta(IO_VDD18_POWER)
     if(pmt->IO_DISPLAY_POWER) print_line("CPU Display IO Power", "%7.3f W", pmta(IO_DISPLAY_POWER));
     if(pmt->IO_USB_POWER) print_line("CPU USB IO Power", "%7.3f W", pmta(IO_USB_POWER));
 
     if(!pmt->powersum_unclear) {
     //The sum is the thermal output of the whole package. Yes, this is higher than PPT and SOCKET_POWER.
     //Confirmed by measuring the actual current draw on the mainboard.
-    print_line("","");
+    //print_line("","");
     print_line("Calculated Thermal Output", "%7.3f W", total_core_power + pmta0(VDDCR_SOC_POWER) + pmta0(GMI2_VDDG_POWER) 
             + l3_logic_power + l3_vddm_power
             + pmta0(VDDIO_MEM_POWER) + pmta0(IOD_VDDIO_MEM_POWER) + pmta0(DDR_VDDP_POWER) + pmta0(VDD18_POWER));
     }
 
-    fprintf(stdout, "├── Additional Reports ─────────────────────────┼────────────────────────────────────────────────┤\n");
+    // fprintf(stdout, "├── Additional Reports ─────────────────────────┼────────────────────────────────────────────────┤\n");
     //print_line("ROC_POWER", "%7.4f",pmta(ROC_POWER));
     print_line("SoC Power (SVI2)", "%8.3f V | %7.3f A | %8.3f W", pmta(SOC_TELEMETRY_VOLTAGE), pmta(SOC_TELEMETRY_CURRENT), pmta(SOC_TELEMETRY_POWER));
     print_line("Core Power (SVI2)", "%8.3f V | %7.3f A | %8.3f W", pmta(CPU_TELEMETRY_VOLTAGE), pmta(CPU_TELEMETRY_CURRENT), pmta(CPU_TELEMETRY_POWER));
