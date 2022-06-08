@@ -78,7 +78,7 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     if (pmt->experimental) {
         fprintf(stdout, "Warning: Support for this PM table version is expermiental. Can't trust anything.\n");
     }
-
+#if 0
     if (sysinfo->available) {
         fprintf(stdout, "╭───────────────────────────────────────────────┬────────────────────────────────────────────────╮\n");
         print_line("CPU Model", sysinfo->cpu_name);
@@ -95,7 +95,7 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
         print_line("MP1 IF Version", "v%d", sysinfo->if_ver);
         fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
     }
-
+#endif
 
     peak_core_frequency = peak_core_temp = peak_core_voltage = 0;
     total_core_voltage = total_core_power = total_usage = total_core_CC6 = 0;
