@@ -171,13 +171,13 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     print_line("Highest Core Temperature", "%8.2f C", peak_core_temp);
     print_line("Highest Core Voltage", "%8.3f V", peak_core_voltage);
     print_line("Average Core Voltage", "%5.3f V", total_core_voltage/sysinfo->enabled_cores_count);
-    print_line("Average Core CC6", "%6.2f %%", total_core_CC6/sysinfo->enabled_cores_count);
+    //print_line("Average Core CC6", "%6.2f %%", total_core_CC6/sysinfo->enabled_cores_count);
     print_line("Total Core Power Sum", "%7.3f W", total_core_power);
 
     fprintf(stdout, "├── Reported by SMU ────────────────────────────┼────────────────────────────────────────────────┤\n");
     //print_line("Package Power", "%8.3f W", pmta(SOCKET_POWER)); //Is listed below in power section
     print_line("Peak Core Voltage", "%5.3f V", pmta(CPU_TELEMETRY_VOLTAGE));
-    if(pmt->PC6) print_line("Package CC6", "%6.2f %%", pmta(PC6));
+    // if(pmt->PC6) print_line("Package CC6", "%6.2f %%", pmta(PC6));
     fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
 
     fprintf(stdout, "╭── Electrical & Thermal Constraints ───────────┬────────────────────────────────────────────────╮\n");
@@ -203,9 +203,9 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     if(pmt->THM_VALUE_GFX) print_line("THM GFX", "%7.2f C | %7.f C | %8.2f %%", pmta(THM_VALUE_GFX), pmta(THM_LIMIT_GFX), (pmta(THM_VALUE_GFX) / pmta(THM_LIMIT_GFX) * 100));
     //if(pmt->STT_LIMIT_APU) print_line("STT APU", "%7.2f   | %7.f   | %8.2f %%", pmta(STT_VALUE_APU), pmta(STT_LIMIT_APU), (pmta(STT_VALUE_APU) / pmta(STT_LIMIT_APU) * 100)); //Always zero
     //if(pmt->STT_LIMIT_DGPU) print_line("STT DGPU", "%7.2f   | %7.f   | %8.2f %%", pmta(STT_VALUE_DGPU), pmta(STT_LIMIT_DGPU), (pmta(STT_VALUE_DGPU) / pmta(STT_LIMIT_DGPU) * 100)); //Always zero
-    print_line("FIT", "%7.f   | %7.f   | %8.2f %%", pmta(FIT_VALUE), pmta(FIT_LIMIT), (pmta(FIT_VALUE) / pmta(FIT_LIMIT)) * 100.f);
+    //print_line("FIT", "%7.f   | %7.f   | %8.2f %%", pmta(FIT_VALUE), pmta(FIT_LIMIT), (pmta(FIT_VALUE) / pmta(FIT_LIMIT)) * 100.f);
     fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
-
+#if 0
     fprintf(stdout, "╭── Memory Interface ───────────────────────────┬────────────────────────────────────────────────╮\n");
     print_line("Coupled Mode", "%8s", pmta(UCLK_FREQ) == pmta(MEMCLK_FREQ) ? "ON" : "OFF");
     print_line("Fabric Clock (Average)", "%5.f MHz", pmta(FCLK_FREQ_EFF));
@@ -220,7 +220,8 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     if(pmt->V_VDDG_IOD) print_line("cLDO_VDDG_IOD", "%7.4f V", pmta(V_VDDG_IOD));
     if(pmt->V_VDDG_CCD) print_line("cLDO_VDDG_CCD", "%7.4f V", pmta(V_VDDG_CCD));
     fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
-
+#endif 
+    
     if(pmt->has_graphics){
     fprintf(stdout, "╭── Graphics Subsystem──────────────────────────┬────────────────────────────────────────────────╮\n");
     print_line("GFX Voltage | ROC Power", "%7.4f V | %8.3f W", pmta(GFX_VOLTAGE), pmta(ROC_POWER));
@@ -302,8 +303,8 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     //print_line("ROC_POWER", "%7.4f",pmta(ROC_POWER));
     print_line("SoC Power (SVI2)", "%8.3f V | %7.3f A | %8.3f W", pmta(SOC_TELEMETRY_VOLTAGE), pmta(SOC_TELEMETRY_CURRENT), pmta(SOC_TELEMETRY_POWER));
     print_line("Core Power (SVI2)", "%8.3f V | %7.3f A | %8.3f W", pmta(CPU_TELEMETRY_VOLTAGE), pmta(CPU_TELEMETRY_CURRENT), pmta(CPU_TELEMETRY_POWER));
-    print_line("Core Power (SMU)", "%7.3f W", pmta(VDDCR_CPU_POWER));
-    print_line("Socket Power (SMU)", "%7.3f W", pmta(SOCKET_POWER));
+   // print_line("Core Power (SMU)", "%7.3f W", pmta(VDDCR_CPU_POWER));
+   // print_line("Socket Power (SMU)", "%7.3f W", pmta(SOCKET_POWER));
     if (pmt->PACKAGE_POWER) print_line("Package Power (SMU)", "%7.3f W", pmta(PACKAGE_POWER));
     fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
 }
