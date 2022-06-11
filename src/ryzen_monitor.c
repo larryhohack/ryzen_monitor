@@ -78,24 +78,7 @@ void draw_screen(pm_table *pmt, system_info *sysinfo) {
     if (pmt->experimental) {
         fprintf(stdout, "Warning: Support for this PM table version is expermiental. Can't trust anything.\n");
     }
-#if 0
-    if (sysinfo->available) {
-        fprintf(stdout, "╭───────────────────────────────────────────────┬────────────────────────────────────────────────╮\n");
-        print_line("CPU Model", sysinfo->cpu_name);
-        print_line("Processor Code Name", sysinfo->codename);
-        print_line("Cores", "%d", sysinfo->cores);
-        print_line("Core CCDs", "%d", sysinfo->ccds);
-        if (pmt->zen_version!=3) {
-            print_line("Core CCXs", "%d", sysinfo->ccxs);
-            print_line("Cores Per CCX", "%d", sysinfo->cores_per_ccx);
-        }
-        else
-            print_line("Cores Per CCD", "%d", sysinfo->cores_per_ccx); //Zen3 does not have CCXs anymore
-        print_line("SMU FW Version", "v%s", sysinfo->smu_fw_ver);
-        print_line("MP1 IF Version", "v%d", sysinfo->if_ver);
-        fprintf(stdout, "╰───────────────────────────────────────────────┴────────────────────────────────────────────────╯\n");
-    }
-#endif
+
 
     peak_core_frequency = peak_core_temp = peak_core_voltage = 0;
     total_core_voltage = total_core_power = total_usage = total_core_CC6 = 0;
