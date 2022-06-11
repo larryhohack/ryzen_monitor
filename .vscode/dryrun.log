@@ -1,0 +1,11 @@
+make: Entering directory '/media/lh/DATA/vscode/ryzen_monitor'
+make -C src 
+make[1]: Entering directory '/media/lh/DATA/vscode/ryzen_monitor/src'
+gcc -O3 -mtune=native -march=native -Ilib   -c -o ryzen_monitor.o ryzen_monitor.c
+gcc -O3 -mtune=native -march=native -Ilib   -c -o pm_tables.o pm_tables.c
+gcc -O3 -mtune=native -march=native -Ilib   -c -o readinfo.o readinfo.c
+gcc -O3 -mtune=native -march=native -Ilib   -c -o lib/libsmu.o lib/libsmu.c
+gcc -O3 -mtune=native -march=native -Ilib -lm -o ryzen_monitor ryzen_monitor.o pm_tables.o readinfo.o lib/libsmu.o
+make[1]: Leaving directory '/media/lh/DATA/vscode/ryzen_monitor/src'
+make: Leaving directory '/media/lh/DATA/vscode/ryzen_monitor'
+ 
